@@ -12,16 +12,21 @@ const New_Div = (attributes = []) => {
     return result;
 }
 
+const Get_Element = (id = "") => {
+    let result = document.getElementById(id);
+    if(result !== undefined) return result;
+    else return false;
+}
+
 const RenderGameBoard = () => {
-    for(const row of GB.GetBoard()){
+    for(let i = 0; i < GB.GetHeight(); i++){
         let new_row = New_Div([["id", "row"]]);
-        for(const col of row){
-            //Create Each cell
-            let new_col = New_Div();
-            new_col.style.width = new_col.style.height = "2vw";
-            new_col.style.border = "10px solid black";
-            new_col.style.background = "red";
-            new_row.appendChild(new_col);
+        for(let j = 0; j < GB.GetWidth(); j++){
+            let new_cell = New_Div([["id", i + ',' + j]]);
+            new_cell.style.width = new_cell.style.height = "2vw";
+            new_cell.style.background = "grey";
+            new_cell.style.border = "10px solid black";
+            new_row.appendChild(new_cell);
         }
         board.appendChild(new_row);
     }
