@@ -9,6 +9,7 @@ class GameBoard{
         this.width = width;
         this.height = height;
         this.array = [];
+        this.column_heights = [];
     }
 
     Initialize(){
@@ -18,6 +19,8 @@ class GameBoard{
             let temp_array = [];
 
             for(let j = 0; j < this.width; j++){
+
+                this.column_heights[j] = this.height - 1;
 
                 temp_array.push('*');
 
@@ -29,11 +32,13 @@ class GameBoard{
         return;
     }
 
-    Populate_Board(i, j, piece){
+    Populate_Board(j, piece){
 
-        if(this.Valid_Index(i,j)){
+        if(this.Valid_Index(this.column_heights[j],j)){
 
-            this.array[i][j] = piece;
+            this.array[this.column_heights[j]][j] = piece;
+
+            this.column_heights[j] --;
 
         }
 
