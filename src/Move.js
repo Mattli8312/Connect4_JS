@@ -44,10 +44,12 @@ const HasWinner = (board) => {
 
 const HandleMove = (GameBoard, turn, j) =>{
     
-    GameBoard.Populate_Board(j, turn ? 'r' : 'y');
+    if(!GameBoard.Populate_Board(j, turn ? 'r' : 'y')){
+        return 'invalid';
+    }
 
-    if(HasWinner(GameBoard.GetBoard()) !== '*') return true;
+    if(HasWinner(GameBoard.GetBoard()) !== '*') return 'winner';
 
-    return false;
+    return 'continue';
     
 }

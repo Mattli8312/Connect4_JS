@@ -4,12 +4,22 @@
 
 class GameBoard{
 
-    
-    constructor(width, height){
+    constructor(width = 0, height = 0){
         this.width = width;
         this.height = height;
         this.array = [];
         this.column_heights = [];
+    }
+    
+    /**
+     * Copy Constructor
+     * @param GameBoard 
+     */
+     Copy(GameBoard){
+        this.width = GameBoard.GetWidth();
+        this.height = GameBoard.GetHeight();
+        this.column_heights = GameBoard.column_heights;
+        this.array = GameBoard.array;
     }
 
     Initialize(){
@@ -34,14 +44,30 @@ class GameBoard{
 
     Populate_Board(j, piece){
 
-        if(this.Valid_Index(this.column_heights[j],j)){
+        if(this.Valid_Index(this.column_heights[j],j) && this.column_heights[j] > -1){
 
             this.array[this.column_heights[j]][j] = piece;
 
             this.column_heights[j] --;
 
+            return true;
+
         }
 
+        return false;
+    }
+
+    Remove_Piece(j){
+
+        if(this.column_heights[j] + 1 < this.height){
+
+            this.column_heights[j]++;
+
+            this.array[this.column_heights[j]][j] = '*';
+
+            return true;
+        }
+        
         return false;
     }
 
