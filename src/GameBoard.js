@@ -4,10 +4,11 @@
 
 class GameBoard{
 
+    
     constructor(width, height){
-        #this.width = width;
-        #this.height = height;
-        #this.array = [];
+        this.width = width;
+        this.height = height;
+        this.array = [];
     }
 
     Initialize(){
@@ -54,6 +55,7 @@ class GameBoard{
     }
 
     GetHeight(){
+
         return this.height;
     }
 
@@ -70,6 +72,11 @@ class GameBoard{
     Valid_Index(i, j){
 
         return i > - 1 && i < this.height && j >-1 && j < this.width;
+    }
+
+    GetBoard(){
+        
+        return this.array;
     }
 
 }
