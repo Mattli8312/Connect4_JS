@@ -20,7 +20,7 @@ const Execute_NaiveMiniMax = (GameBoard, turn) => {
     for(let i = 0; i < option_length; i++){
         if(MiniMaxGameBoard.Populate_Board(i, piece)){
             if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*'){
-                new_elements[i] = turn ? 10 : -10;
+                new_elements[i] = (10 + iterative_depth) * (turn ? 1 : -1);
             }
             else{
                 new_elements[i] = Naive_MiniMax(turn ^ true, iterative_depth);
@@ -47,7 +47,7 @@ const Naive_MiniMax = (turn, level) => {
         for(let i = 0; i < option_length; i++){
             if(MiniMaxGameBoard.Populate_Board(i, piece)){
                 if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*'){
-                    new_elements[i] = turn ? 10 : -10;
+                    new_elements[i] = (10 + level) * (turn ? 1 : -1)
                 }
                 else{
                     new_elements[i] = Naive_MiniMax(turn ^ true, level - 1);
