@@ -41,6 +41,9 @@ const InitializeGameBoard = () => {
                 RenderGameBoard();
 
                 if(winner !== null) Winner_State();
+
+                console.log(Execute_NaiveMiniMax(GB, red_turn));
+
             })
             new_row.appendChild(new_cell);
         }
