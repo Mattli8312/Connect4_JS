@@ -15,3 +15,7 @@ You can access the Devlog File somewhere in the repository to take a better look
 ## Languages and frameworks
 
 Although I could have used React or any other framework/library to handle the front-end, I felt this application wasn't necessary for react as it is fairly light weighted. I used simple HTML/CSS for the front end, ES6 for the game logic, and a couple other node modules to handle client-server interactions.
+
+## Installation
+
+I'll probably host this in the cloud, but for now, If you want, you can clone this repo and run it in a local browser (i.e. Chrome, Mozilla)

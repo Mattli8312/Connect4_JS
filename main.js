@@ -7,6 +7,23 @@ let winner = null;
 
 GB.Initialize();
 
+const Execute_Move = (j) => {
+
+    switch(HandleMove(GB, red_turn, j)){
+
+        case 'invalid': return;
+        case 'winner': winner = red_turn ? 'red' : 'yellow'; break;
+        case 'continue': break;
+        default: break;
+    }
+
+    red_turn ^= true;
+
+    RenderGameBoard();
+
+    if(winner !== null) Winner_State();
+}
+
 const Winner_State = () => {
     console.log(winner)
     const list = document.getElementsByClassName('Cell');
@@ -28,21 +45,12 @@ const InitializeGameBoard = () => {
 
             new_cell.addEventListener('mousedown', ()=>{
 
-                switch(HandleMove(GB, red_turn, j)){
+                Execute_Move(j);
 
-                    case 'invalid': return;
-                    case 'winner': winner = red_turn ? 'red' : 'yellow'; break;
-                    case 'continue': break;
-                    default: break;
-                }
-            
-                red_turn ^= true;
-            
-                RenderGameBoard();
+                let CPU_turn = Execute_NaiveMiniMax(GB, red_turn);
 
-                if(winner !== null) Winner_State();
+                Execute_Move(CPU_turn);
 
-                console.log(Execute_NaiveMiniMax(GB, red_turn));
 
             })
             new_row.appendChild(new_cell);

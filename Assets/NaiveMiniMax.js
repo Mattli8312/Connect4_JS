@@ -8,7 +8,7 @@
 const MiniMaxGameBoard = new GameBoard();
 let option_length = 0;
 let combinations = 0;
-let iterative_depth = 7;
+let iterative_depth = 6;
 
 const Execute_NaiveMiniMax = (GameBoard, turn) => {
     //Initialize Parameters
@@ -27,7 +27,11 @@ const Execute_NaiveMiniMax = (GameBoard, turn) => {
             }
             MiniMaxGameBoard.Remove_Piece(i);
         }
+        else{
+            new_elements[i] = turn ? -10000: 10000;
+        }
     }
+    console.log(new_elements)
     return new_elements.indexOf(turn ? Math.max(...new_elements) : Math.min(...new_elements));
 }
 
@@ -49,6 +53,9 @@ const Naive_MiniMax = (turn, level) => {
                     new_elements[i] = Naive_MiniMax(turn ^ true, level - 1);
                 }
                 MiniMaxGameBoard.Remove_Piece(i);
+            }
+            else{
+                new_elements[i] = turn ? -100: 100;
             }
         }
         return turn ? Math.max(...new_elements) : Math.min(...new_elements);
