@@ -35,7 +35,7 @@ const HasWinner = (board) => {
 
             if(i <= board.length - 4 && j <= board[0].length - 4 && CheckDiagonal_one(i, j, board)) return board[i][j];
 
-            if(i - 4 > 0 && j <= board[0].length - 4 && CheckDiagonal_two(i,j,board)) return board[i][j];
+            if(i >= 3 && j <= board[0].length - 4 && CheckDiagonal_two(i,j,board)) return board[i][j];
 
         }
     }
