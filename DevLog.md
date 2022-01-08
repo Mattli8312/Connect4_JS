@@ -20,3 +20,9 @@ Optimization 1: Detail scoring system
 - The farther it would take the reach that position, i.e. the deeper into the search tree we go, the less valuable that move is.
 - This way, the AI knows to prioritize moves that could make the algorithm block the player's chances of winning sooner, and win the game faster :).
 - This proved to be very effective in the end.
+
+*1/8/2022*
+
+Optimization 2: Alpha-Beta Pruning
+
+- Instead of naively searching through every branch of the tree

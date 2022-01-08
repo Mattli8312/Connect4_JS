@@ -47,7 +47,7 @@ const InitializeGameBoard = () => {
 
                 Execute_Move(j);
 
-                let CPU_turn = Execute_NaiveMiniMax(GB, red_turn);
+                let CPU_turn = Execute_MiniMax(GB, red_turn);
 
                 Execute_Move(CPU_turn);
 
