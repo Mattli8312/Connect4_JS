@@ -8,31 +8,33 @@
 const MiniMaxGameBoard = new GameBoard();
 let option_length = 0;
 let combinations = 0;
-let iterative_depth = 7;
+let iterative_depth = 6;
 
 const Execute_MiniMax = (GameBoard, turn) => {
     //Initialize Parameters
+    combinations = 0;
     MiniMaxGameBoard.Copy(GameBoard);
     option_length = MiniMaxGameBoard.column_heights.length;
-
+    console.log(turn);
     let piece = turn ? 'r' : 'y'
     let new_elements = new Array(option_length).fill(0, 0, option_length);
     for(let i = 0; i < option_length; i++){
         if(MiniMaxGameBoard.Populate_Board(i, piece)){
-            if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*'){
+            if(HasWinner(MiniMaxGameBoard.GetBoard()) === piece){
                 new_elements[i] = (10 + iterative_depth) * (turn ? 1 : -1);
             }
             else{
                 // new_elements[i] = Naive_MiniMax(turn ^ true, iterative_depth);
-                new_elements[i] = MiniMax_Optimized(turn, 6, -Infinity, Infinity);
+                new_elements[i] = MiniMax_Optimized(!turn, iterative_depth, -Infinity, Infinity);
             }
             MiniMaxGameBoard.Remove_Piece(i);
         }
         else{
-            new_elements[i] = turn ? -10000: 10000;
+            new_elements[i] = turn ? -Infinity : Infinity;
         }
     }
     console.log(new_elements)
+    console.log(combinations);
     return new_elements.indexOf(turn ? Math.max(...new_elements) : Math.min(...new_elements));
 }
 
@@ -47,7 +49,7 @@ const Naive_MiniMax = (turn, level) => {
         let new_elements = new Array(option_length).fill(0, 0, option_length);
         for(let i = 0; i < option_length; i++){
             if(MiniMaxGameBoard.Populate_Board(i, piece)){
-                if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*'){
+                if(HasWinner(MiniMaxGameBoard.GetBoard()) === piece){
                     new_elements[i] = (10 + level) * (turn ? 1 : -1)
                 }
                 else{
