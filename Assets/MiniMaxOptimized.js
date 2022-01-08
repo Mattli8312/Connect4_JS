@@ -9,24 +9,38 @@
          combinations++;
          return 0;
      }
+     else if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*'){
+        return (100 + level * 10) * (turn ? 1 : -1);
+     }
      else{
          let piece = turn ? 'r' : 'y';
-         let new_elements = new Array(option_length).fill(0, 0, option_length);
-         for(let i = 0; i < option_length; i++){
-             if(MiniMaxGameBoard.Populate_Board(i, piece)){
-                 if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*'){
-                     new_elements[i] = (10 + level) * (turn ? 1 : -1)
-                 }
-                 else{
-                     new_elements[i] = Naive_MiniMax(turn ^ true, level - 1);
-                 }
-                 MiniMaxGameBoard.Remove_Piece(i);
-             }
-             else{
-                 new_elements[i] = turn ? -100: 100;
-             }
-             if(turn && alpha < new_elements[i]) 
+         if(turn){
+            let max_eval = -Infinity;
+            for(let i = 0; i < option_length; i++){
+                if(MiniMaxGameBoard.Populate_Board(i, piece)){
+                    let eval = Naive_MiniMax(turn ^ true, level - 1, alpha, beta);
+                    MiniMaxGameBoard.Remove_Piece(i);
+
+                    max_eval = Math.max(max_eval, eval);
+                    alpha = Math.max(alpha, eval);
+                    if(beta <= alpha) break;
+                }
+            }
+            return max_eval;
          }
-         return turn ? Math.max(...new_elements) : Math.min(...new_elements);
+         else{
+            let min_eval = Infinity;
+            for(let i = 0; i < option_length; i++){
+                if(MiniMaxGameBoard.Populate_Board(i, piece)){
+                    let eval = Naive_MiniMax(turn ^ true, level - 1, alpha, beta);
+                    MiniMaxGameBoard.Remove_Piece(i);
+
+                    min_eval = Math.max(min_eval, eval);
+                    beta = Math.max(alpha, eval);
+                    if(beta <= alpha) break;
+                }
+            }
+            return min_eval;
+         }
      }
  }
