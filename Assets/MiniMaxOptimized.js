@@ -9,21 +9,24 @@
          combinations++;
          return 0;
      }
-     else if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*'){
-        return (100 + level * 10) * (turn ? 1 : -1);
-     }
      else{
          let piece = turn ? 'r' : 'y';
          if(turn){
             let max_eval = -Infinity;
             for(let i = 0; i < option_length; i++){
                 if(MiniMaxGameBoard.Populate_Board(i, piece)){
-                    let eval = Naive_MiniMax(turn ^ true, level - 1, alpha, beta);
+                    let eval = 0;
+                    if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*')
+                        eval = (10 + level) * (turn ? 1 : -1);
+                    else eval = Naive_MiniMax(!turn, level - 1, alpha, beta);
                     MiniMaxGameBoard.Remove_Piece(i);
 
                     max_eval = Math.max(max_eval, eval);
                     alpha = Math.max(alpha, eval);
-                    if(beta <= alpha) break;
+                    if(beta <= alpha){
+                        console.log(level);
+                        break;
+                    }
                 }
             }
             return max_eval;
@@ -32,12 +35,18 @@
             let min_eval = Infinity;
             for(let i = 0; i < option_length; i++){
                 if(MiniMaxGameBoard.Populate_Board(i, piece)){
-                    let eval = Naive_MiniMax(turn ^ true, level - 1, alpha, beta);
+                    let eval = 0;
+                    if(HasWinner(MiniMaxGameBoard.GetBoard()) !== '*')
+                        eval = (10 + level) * (turn ? 1 : -1);
+                    else eval = Naive_MiniMax(!turn, level - 1, alpha, beta);
                     MiniMaxGameBoard.Remove_Piece(i);
 
-                    min_eval = Math.max(min_eval, eval);
-                    beta = Math.max(alpha, eval);
-                    if(beta <= alpha) break;
+                    min_eval = Math.min(min_eval, eval);
+                    beta = Math.min(alpha, eval);
+                    if(beta <= alpha){
+                        console.log(level);
+                        break;
+                    }
                 }
             }
             return min_eval;

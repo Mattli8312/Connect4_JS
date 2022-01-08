@@ -23,8 +23,8 @@ const Execute_MiniMax = (GameBoard, turn) => {
                 new_elements[i] = (10 + iterative_depth) * (turn ? 1 : -1);
             }
             else{
-                new_elements[i] = Naive_MiniMax(turn ^ true, iterative_depth);
-                //new_elements[i] = MiniMax_Optimized(turn, 6, -Infinity, Infinity);
+                // new_elements[i] = Naive_MiniMax(turn ^ true, iterative_depth);
+                new_elements[i] = MiniMax_Optimized(turn, 6, -Infinity, Infinity);
             }
             MiniMaxGameBoard.Remove_Piece(i);
         }
