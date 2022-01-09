@@ -28,3 +28,9 @@ Optimization 2: Alpha-Beta Pruning
 - Instead of naively searching through every branch of the tree We can Use alpha beta pruning to eliminate subtrees that won't effect the outcome of certain decisions;
 - This will reduce the runtime of the program and increase performance.
 - Also worked on several animations including the drop piece animation, but I'm not sure if this is the best approach. I'm still considering using canvas, but it will require alot of refactoring and rewriting of code :(
+
+*1/9/2022*
+
+Optimization 3: Improve evaluation function
+
+- I'm gonna try several evaluation functions and play around with the values a bit to find the most optimal evaluation function. 

@@ -62,7 +62,6 @@ const InitializeGameBoard = async() => {
 
                 if(value) return;
 
-
             })
             new_row.appendChild(new_cell);
         }
