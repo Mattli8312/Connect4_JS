@@ -6,7 +6,8 @@
      //iterative deepening, to prevent stack overflow
      if(level <= 0){
          combinations++;
-         return turn ? Infinity : -Infinity;
+         evaluation(GB, turn ? 'r' : 'y');
+         return (evaluation_result.three_count * 100 + evaluation_result.two_count * 10) * (turn ? 1 : -1);
      }
      else{
          let piece = turn ? 'r' : 'y';
@@ -16,7 +17,7 @@
                 if(MiniMaxGameBoard.Populate_Board(i, piece)){
                     let eval = 0;
                     if(HasWinner(MiniMaxGameBoard.GetBoard()) === piece)
-                        eval = (10 + level) * (turn ? 1 : -1);
+                        eval = (10000 + level) * (turn ? 1 : -1);
                     else eval = Naive_MiniMax(!turn, level - 1, alpha, beta);
                     MiniMaxGameBoard.Remove_Piece(i);
 

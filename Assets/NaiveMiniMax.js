@@ -21,7 +21,7 @@ const Execute_MiniMax = (GameBoard, turn) => {
     for(let i = 0; i < option_length; i++){
         if(MiniMaxGameBoard.Populate_Board(i, piece)){
             if(HasWinner(MiniMaxGameBoard.GetBoard()) === piece){
-                new_elements[i] = (10 + iterative_depth) * (turn ? 1 : -1);
+                new_elements[i] = (10000 + iterative_depth) * (turn ? 1 : -1);
             }
             else{
                 // new_elements[i] = Naive_MiniMax(turn ^ true, iterative_depth);
@@ -33,6 +33,7 @@ const Execute_MiniMax = (GameBoard, turn) => {
             new_elements[i] = turn ? -Infinity : Infinity;
         }
     }
+    console.log(new_elements);
     return new_elements.indexOf(turn ? Math.max(...new_elements) : Math.min(...new_elements));
 }
 
