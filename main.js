@@ -7,7 +7,7 @@ let winner = null;
 
 GB.Initialize();
 
-const Execute_Move = (j) => {
+const Execute_Move = async (j) => {
 
     switch(HandleMove(GB, red_turn, j)){
 
@@ -17,9 +17,12 @@ const Execute_Move = (j) => {
         default: break;
     }
 
+    
+    await Drop(red_turn ? 'red' : 'yellow', GB.column_heights[j] + 1, j);
+
     red_turn ^= true;
 
-    RenderGameBoard();
+    //RenderGameBoard();
 
     if(winner !== null) Winner_State();
 }
@@ -33,7 +36,7 @@ const Winner_State = () => {
     }
 }
 
-const InitializeGameBoard = () => {
+const InitializeGameBoard = async() => {
 
     for(let i = 0; i < GB.GetHeight(); i++){
 
@@ -43,13 +46,13 @@ const InitializeGameBoard = () => {
 
             let new_cell = New_Div([["id", i + ',' + j], ["class", "Cell"]]);
 
-            new_cell.addEventListener('mousedown', ()=>{
+            new_cell.addEventListener('mousedown', async()=>{
 
-                Execute_Move(j);
+                await Execute_Move(j);
 
                 let CPU_turn = Execute_MiniMax(GB, red_turn);
 
-                Execute_Move(CPU_turn);
+                await Execute_Move(CPU_turn);
 
 
             })
@@ -75,4 +78,7 @@ const RenderGameBoard = () => {
 }
 
 InitializeGameBoard();
+/**
+ * Updated with animations
+ */
 RenderGameBoard();

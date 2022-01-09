@@ -8,7 +8,7 @@
 const MiniMaxGameBoard = new GameBoard();
 let option_length = 0;
 let combinations = 0;
-let iterative_depth = 6;
+let iterative_depth = 7;
 
 const Execute_MiniMax = (GameBoard, turn) => {
     //Initialize Parameters

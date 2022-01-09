@@ -2,12 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    --tile_width: 4vw;
+    --tile_width: 5vw;
 }
 body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#gameboard{
+    background: blue;
 }
 #row{
     display: flex;
@@ -17,7 +20,8 @@ body{
     transition: all 0.5s ease;
     width: var(--tile_width);
     height: var(--tile_width);
-    background: grey;
+    border-radius: 50%;
+    margin: 0.2vw;
     border: 5px solid #00f
 }
 .Cell[filled = "grey"]{
