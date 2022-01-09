@@ -34,3 +34,5 @@ Optimization 2: Alpha-Beta Pruning
 Optimization 3: Improve evaluation function
 
 - I'm gonna try several evaluation functions and play around with the values a bit to find the most optimal evaluation function. 
+- Also added some additional files for refactoring purposes
+- Adding styling and state machine

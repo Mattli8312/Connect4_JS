@@ -3,14 +3,32 @@
     padding: 0;
     box-sizing: border-box;
     --tile_width: 5vw;
-    --background-color: #555;
+    --background-color: rgb(99, 95, 95);
+    --title_color: rgb(180, 150, 49);
 }
 body{
+    top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--background-color);
 }
+
+#title{
+    display: flex;
+    user-select: none;
+    justify-content: center;
+    transform: skewY(-10deg);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 10em;
+    color: rgb(211, 17, 17);
+    text-shadow: -1px -1px 0px var(--title_color),
+                 -3px -3px 0px var(--title_color),
+                 -5px -5px 0px var(--title_color),
+                 -7px -7px 0px var(--title_color);
+}
+
+/** Game Page**/
 #gameboard{
     background: blue;
 }
@@ -36,4 +54,8 @@ body{
 }
 .Cell:hover{
     background: white;
+}
+
+div[enabled="false"]{
+    display: none;
 }

@@ -1,7 +1,7 @@
 /**
  * Stores global application values
  */
-
+ const Menu = document.getElementById('menu');
  const board = document.getElementById('gameboard');
  const width = 7;
  const height = 6;

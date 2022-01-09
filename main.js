@@ -68,7 +68,11 @@ const RenderGameBoard = () => {
 }
 
 InitializeGameBoard();
-Initialize_CPU_Mode();
+/**
+ * Different Game Modes: 1vCPU, 1v1, and multiplayer hopefully :)
+ */
+// Initialize_CPU_Mode();
+Initialize_Two_Person_Mode();
 /**
  * Updated with animations
  */
