@@ -3,7 +3,7 @@
  * As of right now, I'm not sure if I want to implement anything using the canvas 
  * API or just use css and flex box :)
  */
-const drop_fps = 200;
+const drop_fps = 50;
 
 async function Drop(piece, i, j){
     console.log(i, j);
