@@ -1,13 +1,6 @@
-const { faListAlt } = require("@fortawesome/free-solid-svg-icons");
-
-const board = document.getElementById('gameboard');
-const width = 7;
-const height = 6;
-const GB = new GameBoard(width, height);
-let red_turn = true;
-let winner = null;
-
-GB.Initialize();
+/**
+ * Entry Point of the application
+ */
 
 const Execute_Move = async (j) => {
 
@@ -57,28 +50,7 @@ const InitializeGameBoard = async() => {
         board.appendChild(new_row);
     }
 }
-const Initialize_CPU_Mode = () => {
 
-    let list_ = document.getElementsByClassName('Cell');
-    
-    for(const li of list_) {
-
-        li.addEventListener('mousedown', async()=>{
-
-            let value = await Execute_Move(j);
-            
-            if(value) return;
-
-            let CPU_turn = Execute_MiniMax(GB, red_turn);
-
-            value = await Execute_Move(CPU_turn);
-
-            if(value) return;
-
-        })
-    }
-
-}
 
 const RenderGameBoard = () => {
     for(let i = 0; i < GB.GetHeight(); i++){
