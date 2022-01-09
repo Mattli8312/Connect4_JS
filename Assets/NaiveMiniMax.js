@@ -33,8 +33,6 @@ const Execute_MiniMax = (GameBoard, turn) => {
             new_elements[i] = turn ? -Infinity : Infinity;
         }
     }
-    console.log(new_elements)
-    console.log(combinations);
     return new_elements.indexOf(turn ? Math.max(...new_elements) : Math.min(...new_elements));
 }
 

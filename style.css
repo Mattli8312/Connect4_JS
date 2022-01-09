@@ -3,11 +3,13 @@
     padding: 0;
     box-sizing: border-box;
     --tile_width: 5vw;
+    --background-color: #555;
 }
 body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--background-color);
 }
 #gameboard{
     background: blue;
@@ -25,7 +27,7 @@ body{
     border: 5px solid #00f
 }
 .Cell[filled = "grey"]{
-    background: grey;
+    background: var(--background-color);
 }
 .Cell[filled = "red"]{
     background: red;

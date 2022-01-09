@@ -24,7 +24,11 @@ const Execute_Move = async (j) => {
 
     //RenderGameBoard();
 
-    if(winner !== null) Winner_State();
+    if(winner !== null){
+        Winner_State();
+        return true;
+    } 
+    return false;
 }
 
 const Winner_State = () => {
@@ -48,11 +52,15 @@ const InitializeGameBoard = async() => {
 
             new_cell.addEventListener('mousedown', async()=>{
 
-                await Execute_Move(j);
+                let value = await Execute_Move(j);
+                
+                if(value) return;
 
                 let CPU_turn = Execute_MiniMax(GB, red_turn);
 
-                await Execute_Move(CPU_turn);
+                value = await Execute_Move(CPU_turn);
+
+                if(value) return;
 
 
             })
