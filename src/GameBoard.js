@@ -24,6 +24,8 @@ class GameBoard{
 
     Initialize(){
 
+        this.array = [];
+
         for(let i = 0; i < this.height; i++){
 
             let temp_array = [];

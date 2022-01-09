@@ -2,24 +2,45 @@
  * Handles Player moves and Game logic
  */
 
-const CheckRow = (i,j,board) => {
+const CheckRow = (i,j,board,count=4) => {
 
-    return board[i][j] == board[i][j+1] && board[i][j] == board[i][j+2] && board[i][j] == board[i][j+3];
+    for(let a = 1; a < count; a++){
+        
+        if(board[i][j] !== board[i][j+a]) return false;
+
+    }
+
+    return true;
 }
 
-const CheckColumn = (i,j,board) => {
+const CheckColumn = (i,j,board,count=4) => {
     
-    return board[i][j] == board[i+1][j] && board[i][j] == board[i+2][j] && board[i][j] == board[i+3][j];
+    for(let a = 1; a < count; a++){
+
+        if(board[i][j] !== board[i+a][j]) return false;
+    }
+
+    return true;
 }
 
-const CheckDiagonal_one = (i,j,board) => {
+const CheckDiagonal_one = (i,j,board,count = 4) => {
 
-    return board[i][j] == board[i+1][j+1] && board[i][j] == board[i+2][j+2] && board[i][j] == board[i+3][j+3];
+    for(let a = 1; a < count; a++){
+
+        if(board[i][j] !== board[i+a][j+a]) return false;
+    }
+
+    return true;
 }
 
-const CheckDiagonal_two = (i,j,board) => {
+const CheckDiagonal_two = (i,j,board, count = 4) => {
 
-    return board[i][j] == board[i-1][j+1] && board[i][j] == board[i-2][j+2] && board[i][j] == board[i-3][j+3];
+    for(let a = 1; a < count; a++){
+
+        if(board[i][j] !== board[i-a][j+a]) return false;
+    }
+
+    return true;
 }
 
 const HasWinner = (board) => {

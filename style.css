@@ -19,7 +19,6 @@ body{
     flex-direction: row;
 }
 .Cell{
-    transition: all 0.5s ease;
     width: var(--tile_width);
     height: var(--tile_width);
     border-radius: 50%;
